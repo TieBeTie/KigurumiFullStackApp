@@ -1,0 +1,21 @@
+.Guarantees {
+    background: white;
+    
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    line-height: 32px;
+    margin: 0% 5%;
+    padding: 50px 100px;
+    list-style-type: disc;
+    line-height: normal;
+    gap: 10px;
+}
+
+.Guarantee {
+    color:rgb(151, 151, 151);
+    font-size: 20px;
+    width: 100%;
+}

@@ -1,0 +1,94 @@
+.Rectangle {
+    background: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    line-height: 32px;
+    margin: 0% 5%;
+    padding: 30px 50px;
+    list-style-type: disc;
+    line-height: normal;
+}
+
+.Filters {
+    display:flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.Filters input {
+    width: 100%;
+    background:rgb(221, 221, 221);
+    color: white;
+ 
+ 
+    outline: none;
+    border-color: inherit;
+    border: none;
+    box-shadow: none;
+    mask-border: none;
+    font-family: 'Montserrat', 'Montserrat Alternates', sans-serif !important;
+ 
+    height: 30px;
+    font-size:21px;
+    display:flex;
+    align-items: center;
+    border-radius:20px;
+    padding-left: 25px;
+ }
+
+ .FilterButton {
+    background: rgba(0, 0, 0, 0.29);
+    border-radius: 20px;
+
+    font-weight: 300;
+    font-size: 15px;
+    text-align: center;
+    align-self: center;
+
+    width: 90px;
+    line-height: 30px;
+
+    color: #FFFFFF;
+ }
+
+ .ShowCase {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    gap: 100px;
+    flex-direction: row;
+    padding: 30px;
+ }
+ 
+ .Kigurumi {
+     display: flex;
+     flex-direction: column;
+     width: 25%;
+ }
+
+ .KigurumiName {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+ }
+
+ .KigurumiPrice {
+    background: #FFB2C9;
+    border-radius: 7px;
+    align-self: flex-end;
+   
+    width: 100px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+ }

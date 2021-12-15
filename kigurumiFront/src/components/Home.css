@@ -1,0 +1,50 @@
+.Main {
+    display: flex;
+    align-items: center;
+    margin: 0% 5%;
+    gap: 70px;
+}
+.TaglineAndOrder {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    gap: 20px;
+}
+.Tagline {
+    /* Закажи своё уникальное, а мы доставим его на дом. */
+/* 
+    position: absolute;
+    width: 600px;
+    height: 123px;
+    left: 55px;
+    top: 318px; */
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 31px;
+    line-height: 38px;
+
+    color: #FFFFFF;
+
+
+}
+.Order {/* Заказать кигуруми */
+/* 
+    position: absolute;
+    width: 352px;
+    height: 41px;
+    left: 55px;
+    top: 440px; */
+
+    font-weight: 800;
+    font-size: 24px;
+    width: 50%;
+    padding: 30px;
+    text-align: center;
+
+
+    background: rgba(0, 0, 0, 0.29);
+    border-radius: 5px;
+
+    color: #FFFFFF;
+}

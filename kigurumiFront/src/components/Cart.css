@@ -1,0 +1,8 @@
+.Cart {
+    display: flex;
+    flex-direction: column;
+}
+
+.CartItem {
+    width: 100%;
+}
