@@ -15,17 +15,26 @@ function Auth() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [username, setUsername] = React.useState('');
+    const [usernameErr, setUsernameErr] = React.useState('');
+    const [passwordErr, setPasswordErr] = React.useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const formData = new FormData(e.target)
         authUser(Object.fromEntries(formData))
             .then(data => {
-                localStorage.setItem('access_token', data.access)
-                if (localStorage.getItem('access_token') !== "undefined" && localStorage.getItem('access_token')) {
-                    window.location.reload()
-                } else {
-                    alert('неверно')
+                if (data.hasOwnProperty('username')) {
+                    setUsernameErr(data.username)
+                    setPasswordErr(data.password)
+                } else if (data.hasOwnProperty('password')) {
+                    setUsernameErr(data.username)
+                    setPasswordErr(data.password)
+                } else if (data.hasOwnProperty('detail')) {
+                    setUsernameErr(data.detail)
+                    setPasswordErr(data.password)
+                } else if (data.hasOwnProperty('access_token') || data.hasOwnProperty('refresh')){
+                    localStorage.setItem('access_token', data.access)
+                    window.location.href = "/"
                 }
             })
     };
@@ -35,10 +44,12 @@ function Auth() {
             <div className="Text">
                 <div>Логин:</div>
                 <input type='username' name='username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                {usernameErr}
             </div>
             <div className="Text">
                 <div>Пароль:</div>
                 <input type='password' name='password' id='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                {passwordErr}
             </div>
             <a className='NoAccount' href='/registration' style={{ textDecoration: 'none' }} >
                 Нет аккаунта? Завести.

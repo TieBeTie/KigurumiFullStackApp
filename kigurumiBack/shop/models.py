@@ -15,3 +15,13 @@ def insert(name, sizes, price, img):
     kigurumi.price = price
     kigurumi.img = img
     kigurumi.save()
+
+class Order(models.Model):
+    country = models.CharField(max_length=100, default='')
+    region = models.CharField(max_length=100, default='')
+    city = models.CharField(max_length=100, default='')
+    address = models.CharField(max_length=300, default='')
+    index = models.IntegerField(default=0)
+    name = models.CharField(max_length=200, default='')
+    phone = models.CharField(max_length=100, default='')
+    kigurumi_id = models.IntegerField(default=-1)

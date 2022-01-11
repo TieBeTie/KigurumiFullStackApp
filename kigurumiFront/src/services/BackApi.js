@@ -1,6 +1,10 @@
 import Home from "../components/Home"
 
-const baseUrl = 'http://teeble.sytes.net:8000/'
+const baseUrl = 'http://localhost:8000/'
+
+function getBaseURL() {
+    return baseUrl
+}
 
 export const getPosts = () => {
     fetch(baseUrl + 'get_all/')
@@ -28,21 +32,14 @@ export const create = (data) => {
 }
 
 export const createUser = (data) => {
-    fetch(baseUrl + 'auth/users/', {
+    return fetch(baseUrl + 'auth/users/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(data)
     })
-        .then(e => {
-            if (e.status === 400 || e.status === 401) {
-                alert("Пароль не содержит цифр")
-            } else {
-                alert('Успешно!')
-                window.location.reload()
-            }
-        })
+    .then(data => data.json())
 }
 
 export const authUser = (data) => {
@@ -56,12 +53,12 @@ export const authUser = (data) => {
 }
 
 export const downloadShop = () => {
-    return fetch(baseUrl + 'shop/get_all/')
+    return fetch(baseUrl + 'shop/get_all_kigurumi/')
         .then(data => data.json())
 }
 
 export const downloadFilteredShop = (data) => {
-    fetch(baseUrl + 'shop/get_filtered/', {
+    fetch(baseUrl + 'shop/get_filtered_kigurumi/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -80,7 +77,7 @@ export const downloadFilteredShop = (data) => {
 
 
 export const createOrder = (data) => {
-    fetch(baseUrl + 'auth/users/', {
+    fetch(baseUrl + 'shop/create_order/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -96,3 +93,5 @@ export const createOrder = (data) => {
             }
         })
 }
+
+

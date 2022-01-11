@@ -11,13 +11,18 @@ function OrderForm() {
     const [city, setCity] = React.useState('');
     const [address, setAddress] = React.useState('');
     const [index, setIndex] = React.useState('');
-    const [full_name, setFullName] = React.useState('');
-    const [phone_number, setPhoneNumber] = React.useState('');
+    const [name, setFullName] = React.useState('');
+    const [phone, setPhoneNumber] = React.useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const formData = new FormData(e.target)
-        createOrder(Object.fromEntries(formData))
+        var cart = JSON.parse(localStorage.getItem('cart'))
+        for (let i = 0; i < cart.items.length; ++i) {
+            let formData = new FormData(e.target)
+            formData.append('kigurumi_id', cart.items[i].id)
+            createOrder(Object.fromEntries(formData))
+        }
+        localStorage.removeItem('cart')
     };
 
     return (
@@ -47,11 +52,11 @@ function OrderForm() {
             </div>
             <div className="Text">
                 <div> ФИО:</div>
-                <input type="text" name='full_name' value={full_name} onChange={(e) => setFullName(e.target.value)} />
+                <input type="text" name='name' value={name} onChange={(e) => setFullName(e.target.value)} />
             </div>
             <div className="Text">
                 <div>Номер телефона:</div>
-                <input type="number" name='phone_number' value={phone_number} onChange={(e) => setPhoneNumber(e.target.value)} />
+                <input type="number" name='phone' value={phone} onChange={(e) => setPhoneNumber(e.target.value)} />
             </div>
 
             <div className="Enter">

@@ -63,13 +63,15 @@
     align-content: center;
     gap: 100px;
     flex-direction: row;
-    padding: 30px;
+    padding: 25px;
  }
  
  .Kigurumi {
      display: flex;
      flex-direction: column;
      width: 25%;
+     
+     align-items: center;
  }
 
  .KigurumiName {
@@ -81,14 +83,34 @@
     color: #000000;
  }
 
+ .PriceAndAdd {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+ }
+
+
  .KigurumiPrice {
     background: #FFB2C9;
     border-radius: 7px;
-    align-self: flex-end;
-   
+    align-self: flex-start;
+
     width: 100px;
+    padding: 2px; 
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
+    text-align: center;
  }
+
+.AddText {
+   background: #FFB2C9;
+   margin:0px;
+   padding:0px 0px;
+   border: none;  
+   background: none;
+   cursor: pointer;
+}

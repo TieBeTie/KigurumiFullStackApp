@@ -10,13 +10,27 @@ function RegistrationForm() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [username, setUsername] = React.useState('');
+    const [usernameErr, setUsernameErr] = React.useState('');
+    const [passwordErr, setPasswordErr] = React.useState('');
 
     // const [passwordRepeat, setPasswordRepeat] = React.useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const formData = new FormData(e.target)
-        createUser(Object.fromEntries(formData))
+        createUser(Object.fromEntries(formData)).then(data => {
+            if (data.hasOwnProperty('username')) {
+                if (data.username === username) {
+                    window.location.href = "/"
+                } else {
+                    setUsernameErr(data.username)
+                    setPasswordErr(data.password)
+                }
+            } else if (data.hasOwnProperty('password')) {
+                setUsernameErr(data.username)
+                setPasswordErr(data.password)
+            }
+        })
     };
 
     return (
@@ -31,10 +45,12 @@ function RegistrationForm() {
             <div className="Text">
                 <div>Логин:</div>
                 <input type='username' name='username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                {usernameErr}
             </div>
             <div className="Text">
                 <div>Пароль:</div>
                 <input type='password' name='password' id='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                {passwordErr}
             </div>
             {/* <div className="Text">
                 <div>Повторите пароль:</div>

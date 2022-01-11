@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import './Cart.css';
+import trash from './img/enter.png'
 import { downloadShop } from '../services/BackApi';
+
+const baseUrl = 'http://localhost:8000/'
 
 const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -13,38 +16,67 @@ class GetKigurumies extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            catalogue: []
+            catalogue: [],
         }
     }
 
     componentDidMount() {
-        downloadShop()
-            .then(json => {
-                this.setState({ catalogue: json })
+        var json = JSON.parse(localStorage.getItem('cart'))
+        if (json) {
+            this.setState({ catalogue: json.items })
+        }
+    }
 
-            })
+
+    handleSubmit(event) {
+        event.preventDefault();
+    }
+
+    handleClick(kigurumi) {
+        var cart = JSON.parse(localStorage.getItem('cart'))
+        var ind = cart.items.findIndex(kigurumi)
+        cart.items = cart.items.slice(0, ind - 1).concat(cart.items.slice(ind + 1, cart.items.lenght))
+        this.setState({ catalogue: cart.items })
+        localStorage.setItem('cart', JSON.stringify(cart))
     }
 
 
     render() {
+        if (JSON.parse(localStorage.getItem('cart'))) {
+            return (
+                this.state.catalogue.map(kigurumi => (
+                    <form className='CartItem' onSubmit={() => handleSubmit()}>
+                        <img src={baseUrl + 'img/' + kigurumi.img} width="100px" className="CartItemImage" alt="kigurumiImg" />
+                        <div className='CartItemName'>
+                            {kigurumi.name + ' кигуруми'}
+                        </div>
+                        <div className='CartItemRight'>
+                            <button className='CleanButton' onClick={() => this.handleClick(kigurumi)}>
+                                <img src={trash} className="TrashIcon" alt="trash" width="30px" />
+                            </button>
+                            <div className='CartItemPrice'>
+                                {kigurumi.price + ' руб.'}
+                            </div>
+                        </div>
+                        {/* <div className='CartItemNameAndPrice'>
+                            <div className='CartItemName'>
+                                {kigurumi.name + ' кигуруми'}
+                            </div>
+                            <div className='CartItemPrice'>
+                                {kigurumi.price + ' руб.'}
+                            </div>
+                        </div> */}
+                    </form>
+                ))
+            )
+        } else {
+            return (
+                <a className='ToOrdering' href='/order0' style={{ textDecoration: 'none', color: 'black' }} >
+                    Вы ещё не добавили кигуруми в корзину
+                </a>
 
-        return (
-
-            this.state.catalogue.map(kigurumi => (
-                <form className='CartItem' onSubmit={handleSubmit}>
-                    <div className='KigurumiName'>
-                        {kigurumi.name + ' кигуруми'}
-                    </div>
-                    <img src={kigurumi.img} className="kigurumiImg" alt="kigurumiImg" />
-                    <div className='KigurumiPrice'>
-                        {kigurumi.price}
-                    </div>
-                    <button className='CleanButton'>
-                        Добавить
-                    </button>
-                </form>
-            ))
-        )
+            )
+        }
     }
 }
 
@@ -53,14 +85,18 @@ function Cart() {
         <div >
             <Header />
             <div className="Rectangle">
-                <div style={{ color: 'rgba(0,0,0, 0.6)', fontSize: '24px' }}>
-                    Корзина
-                </div>
-                <div className='Cart'>
-                    <GetKigurumies />
-                    <a className='ToOrdering' href='/ordering' style={{ textDecoration: 'none', color: 'black' }} >
-                        Перейти к оформлению заказа
-                    </a>
+                <div className='CartPage'>
+                    <div className='CartSign'>
+                        Корзина
+                    </div>
+                    <div className='Cart'>
+                        <GetKigurumies />
+                        {JSON.parse(localStorage.getItem('cart')) &&
+                            <a className='ToOrdering' href='/ordering' style={{ textDecoration: 'none', color: 'black' }} >
+                                Перейти к оформлению заказа
+                            </a>
+                        }
+                    </div>
                 </div>
             </div>
             <Footer />
