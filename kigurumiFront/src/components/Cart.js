@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import './Cart.css';
-import trash from './img/enter.png'
-import { downloadShop } from '../services/BackApi';
+import trash from './img/trash.png'
 
 const baseUrl = 'http://localhost:8000/'
 
@@ -11,6 +10,16 @@ const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     localStorage.setItem()
 };
+
+
+function findTitle(array, value) {
+    for (let i = 0; i < array.length; ++i) {
+        if (JSON.stringify(array[i]) === JSON.stringify(value)) {
+            return i;
+        }
+    }
+    return false;
+}
 
 class GetKigurumies extends Component {
     constructor(props) {
@@ -31,18 +40,22 @@ class GetKigurumies extends Component {
     handleSubmit(event) {
         event.preventDefault();
     }
+    
 
     handleClick(kigurumi) {
         var cart = JSON.parse(localStorage.getItem('cart'))
-        var ind = cart.items.findIndex(kigurumi)
-        cart.items = cart.items.slice(0, ind - 1).concat(cart.items.slice(ind + 1, cart.items.lenght))
+        var ind = findTitle(cart.items, kigurumi)
+        cart.items = cart.items.slice(0, ind).concat(cart.items.slice(ind + 1, cart.items.lenght))
         this.setState({ catalogue: cart.items })
         localStorage.setItem('cart', JSON.stringify(cart))
+        if (Object.keys(JSON.parse(localStorage.getItem('cart')).items).length === 0) {
+            window.location.reload()
+        }
     }
 
 
     render() {
-        if (JSON.parse(localStorage.getItem('cart'))) {
+        if (JSON.parse(localStorage.getItem('cart')) && Object.keys(JSON.parse(localStorage.getItem('cart')).items).length !== 0) {
             return (
                 this.state.catalogue.map(kigurumi => (
                     <form className='CartItem' onSubmit={() => handleSubmit()}>
@@ -58,20 +71,12 @@ class GetKigurumies extends Component {
                                 {kigurumi.price + ' руб.'}
                             </div>
                         </div>
-                        {/* <div className='CartItemNameAndPrice'>
-                            <div className='CartItemName'>
-                                {kigurumi.name + ' кигуруми'}
-                            </div>
-                            <div className='CartItemPrice'>
-                                {kigurumi.price + ' руб.'}
-                            </div>
-                        </div> */}
                     </form>
                 ))
             )
         } else {
             return (
-                <a className='ToOrdering' href='/order0' style={{ textDecoration: 'none', color: 'black' }} >
+                <a className='ToOrdering' href='/order' style={{ textDecoration: 'none', color: 'black' }} >
                     Вы ещё не добавили кигуруми в корзину
                 </a>
 
@@ -91,12 +96,13 @@ function Cart() {
                     </div>
                     <div className='Cart'>
                         <GetKigurumies />
-                        {JSON.parse(localStorage.getItem('cart')) &&
+                        {JSON.parse(localStorage.getItem('cart')) && Object.keys(JSON.parse(localStorage.getItem('cart')).items).length !== 0 &&
                             <a className='ToOrdering' href='/ordering' style={{ textDecoration: 'none', color: 'black' }} >
                                 Перейти к оформлению заказа
                             </a>
                         }
                     </div>
+                    
                 </div>
             </div>
             <Footer />

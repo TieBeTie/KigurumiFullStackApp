@@ -3,8 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './Registration.css';
 import enter from './img/enter.png'
-import { authUser, create, createUser } from '../services/BackApi';
-import Home from './Home';
+import { createUser } from '../services/BackApi';
 
 function RegistrationForm() {
     const [email, setEmail] = React.useState('');
@@ -12,8 +11,6 @@ function RegistrationForm() {
     const [username, setUsername] = React.useState('');
     const [usernameErr, setUsernameErr] = React.useState('');
     const [passwordErr, setPasswordErr] = React.useState('');
-
-    // const [passwordRepeat, setPasswordRepeat] = React.useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -52,10 +49,6 @@ function RegistrationForm() {
                 <input type='password' name='password' id='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 {passwordErr}
             </div>
-            {/* <div className="Text">
-                <div>Повторите пароль:</div>
-                <input type='password' id='password' value={passwordRepeat} onChange={(e) => setPasswordRepeat(e.target.value)} />
-            </div> */}
             <div className="Enter">
                 <button className='CleanButton'>
                     <img src={enter} className="Enter" alt="enter" />

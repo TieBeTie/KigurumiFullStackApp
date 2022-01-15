@@ -1,35 +1,4 @@
-import Home from "../components/Home"
-
 const baseUrl = 'http://localhost:8000/'
-
-function getBaseURL() {
-    return baseUrl
-}
-
-export const getPosts = () => {
-    fetch(baseUrl + 'get_all/')
-        .then(data => data.json())
-        .then(data => console.log(data))
-}
-
-export const drop = (id) => {
-    fetch(baseUrl + 'drop/${id}', {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        }
-    })
-}
-
-export const create = (data) => {
-    fetch(baseUrl + 'create/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(data)
-    })
-}
 
 export const createUser = (data) => {
     return fetch(baseUrl + 'auth/users/', {
@@ -67,9 +36,7 @@ export const downloadFilteredShop = (data) => {
     })
         .then(e => {
             if (e.status === 400 || e.status === 401) {
-                alert("Не удалось найти")
             } else {
-                alert('Оформлено!')
                 window.location.reload()
             }
         })
@@ -86,9 +53,8 @@ export const createOrder = (data) => {
     })
         .then(e => {
             if (e.status === 400 || e.status === 401) {
-                alert("Не удалось оформить заказ")
+                alert("Либо корзина пуста, либо данные введины некорректно")
             } else {
-                alert('Оформлено!')
                 window.location.reload()
             }
         })

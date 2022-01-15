@@ -12,13 +12,7 @@
 }
 .Tagline {
     /* Закажи своё уникальное, а мы доставим его на дом. */
-/* 
-    position: absolute;
-    width: 600px;
-    height: 123px;
-    left: 55px;
-    top: 318px; */
-
+    
     font-style: normal;
     font-weight: 600;
     font-size: 31px;
@@ -29,12 +23,6 @@
 
 }
 .Order {/* Заказать кигуруми */
-/* 
-    position: absolute;
-    width: 352px;
-    height: 41px;
-    left: 55px;
-    top: 440px; */
 
     font-weight: 800;
     font-size: 24px;

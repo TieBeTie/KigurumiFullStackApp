@@ -4,15 +4,9 @@ import './LoginForm.css';
 import enter from './img/enter.png'
 import close from './img/close.png'
 import { authUser } from '../services/BackApi';
-import Order from './Order';
 
-function LoggedIn() {
-    alert('Успешно!');
-    window.location.reload();
-}
 
 function Auth() {
-    const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [username, setUsername] = React.useState('');
     const [usernameErr, setUsernameErr] = React.useState('');

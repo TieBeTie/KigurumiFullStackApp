@@ -10,7 +10,7 @@
     gap:20px;
 }
 .CartSign {
-    color: rgba(0, 0, 0, 0.29);
+    color: rgba(0, 0, 0, 0.20);
     font-weight: 600;
     font-size: 20px;
     display: flex;
@@ -76,7 +76,7 @@
     width: 50%;
     padding: 16px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.29);
+    background: linear-gradient(134.88deg, hsl(342, 100%, 86%), #ffb8cd5e);
     border-radius: 5px;
     color: #FFFFFF !important;
     align-self: center;

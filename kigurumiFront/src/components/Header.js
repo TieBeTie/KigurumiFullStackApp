@@ -11,7 +11,6 @@ function LogOut() {
         e.preventDefault();
         localStorage.removeItem("access_token")
         window.location.reload();
-
     };
 
     return (
@@ -23,8 +22,7 @@ function LogOut() {
     );
 }
 
-function UserGreeting(props) {
-    
+function UserMenu(props) {
     return <div className="menu">
         <label htmlFor="sub-open">
             <img className='CleanButton' src={menu} width="45px" alt="menu" />
@@ -43,7 +41,7 @@ function UserGreeting(props) {
     </div>;
 }
 
-function GuestGreeting(props) {
+function Login(props) {
     return <div className="login">
         <label htmlFor="login-form" class="CleanButton">
             Вход
@@ -52,11 +50,11 @@ function GuestGreeting(props) {
     </div>;
 }
 
-function Greeting(props) {
+function TryLogin(props) {
     if (localStorage.getItem('access_token') !== "undefined" && localStorage.getItem('access_token')) {
-        return <UserGreeting />;
+        return <UserMenu />;
     }
-    return <GuestGreeting />;
+    return <Login />;
 }
 
 
@@ -77,7 +75,7 @@ function Header() {
                     О сервисе
                 </a>
             </nav>
-            <Greeting />
+            <TryLogin />
         </div>
     );
 }
