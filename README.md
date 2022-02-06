@@ -1,2 +1,2 @@
 # KigurumiFullStackApp
-Сайт по продаже кигуруми
+Сайт по продаже кигуруми (React + Django)
