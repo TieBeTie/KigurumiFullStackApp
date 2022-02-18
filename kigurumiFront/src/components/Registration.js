@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import './Registration.css';
+import './style/Registration.css';
 import enter from './img/enter.png'
 import { createUser } from '../services/BackApi';
 

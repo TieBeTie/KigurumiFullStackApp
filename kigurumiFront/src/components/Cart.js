@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import './Cart.css';
+import './style/Cart.css';
 import trash from './img/trash.png'
-
-const baseUrl = 'http://localhost:8000/'
+import BackApi from '../services/BackApi';
 
 const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,7 +58,7 @@ class GetKigurumies extends Component {
             return (
                 this.state.catalogue.map(kigurumi => (
                     <form className='CartItem' onSubmit={() => handleSubmit()}>
-                        <img src={baseUrl + 'img/' + kigurumi.img} width="100px" className="CartItemImage" alt="kigurumiImg" />
+                        <img src={BackApi.URL + 'img/' + kigurumi.img} width="100px" className="CartItemImage" alt="kigurumiImg" />
                         <div className='CartItemName'>
                             {kigurumi.name + ' кигуруми'}
                         </div>

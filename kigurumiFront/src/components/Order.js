@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import './Order.css';
-import { downloadShop } from '../services/BackApi';
+import './style/Order.css';
+import BackApi, { downloadShop } from '../services/BackApi';
 import add from './img/add.png'
-
-const baseUrl = 'http://localhost:8000/'
 
 class GetKigurumies extends Component {
     constructor(props) {
@@ -52,7 +50,7 @@ class GetKigurumies extends Component {
         return (
             this.state.catalogue.map(kigurumi => (
                 <form className='Kigurumi' onSubmit={this.handleSubmit}>
-                    <img src={baseUrl + 'img/' + kigurumi.img} className="KigurumiImg" alt="kigurumiImg" width="300px" />
+                    <img src={BackApi.URL + 'img/' + kigurumi.img} className="KigurumiImg" alt="kigurumiImg" width="300px" />
                     <div className='KigurumiName'>
                         {kigurumi.name + ' Кигуруми'}
                     </div>

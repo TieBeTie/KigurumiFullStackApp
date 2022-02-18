@@ -1,5 +1,5 @@
 import React from 'react';
-import './LoginForm.css';
+import './style/LoginForm.css';
 
 import enter from './img/enter.png'
 import close from './img/close.png'

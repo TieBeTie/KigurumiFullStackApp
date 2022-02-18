@@ -1,18 +1,23 @@
-const baseUrl = 'http://localhost:8000/'
+const URL = 'http://localhost:8000/'
+
+const exportedObjects = {
+    URL
+}
+export default exportedObjects
 
 export const createUser = (data) => {
-    return fetch(baseUrl + 'auth/users/', {
+    return fetch(URL + 'auth/users/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(data)
     })
-    .then(data => data.json())
+        .then(data => data.json())
 }
 
 export const authUser = (data) => {
-    return fetch(baseUrl + 'auth/jwt/create/', {
+    return fetch(URL + 'auth/jwt/create/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -22,12 +27,12 @@ export const authUser = (data) => {
 }
 
 export const downloadShop = () => {
-    return fetch(baseUrl + 'shop/get_all_kigurumi/')
+    return fetch(URL + 'shop/get_all_kigurumi/')
         .then(data => data.json())
 }
 
 export const downloadFilteredShop = (data) => {
-    fetch(baseUrl + 'shop/get_filtered_kigurumi/', {
+    fetch(URL + 'shop/get_filtered_kigurumi/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -44,7 +49,7 @@ export const downloadFilteredShop = (data) => {
 
 
 export const createOrder = (data) => {
-    fetch(baseUrl + 'shop/create_order/', {
+    fetch(URL + 'shop/create_order/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'

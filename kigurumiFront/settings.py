@@ -28,7 +28,7 @@ DEBUG = True
 
 # Application definition
 
-MEDIA_ROOT = '/home/tiebetie/backend/shop/img/'
+MEDIA_ROOT = r"C:\Users\Jerry\Projects\kigurumiBack\shop\img"
 
 MEDIA_URL = '/img/'
 

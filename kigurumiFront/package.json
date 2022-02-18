@@ -14,7 +14,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:webpack": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

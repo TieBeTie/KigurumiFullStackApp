@@ -2,7 +2,7 @@ import React from 'react';
 import { createOrder } from '../services/BackApi';
 import Footer from './Footer';
 import Header from './Header';
-import './Ordering.css';
+import './style/Ordering.css';
 import enter from './img/enter.png'
 
 function OrderForm() {

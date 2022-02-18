@@ -5,7 +5,7 @@ import Home from './Home';
 import About from './About'
 import NotFound from './NotFound';
 import Order from './Order';
-import './App.css';
+import './style/App.css';
 import Registration from './Registration';
 import Cart from './Cart';
 import Ordering from './Ordering';
