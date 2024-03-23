@@ -1,2 +1,2 @@
 # KigurumiFullStackApp
-Сайт по продаже кигуруми (React + Django)
+The website specializing in kigurumi sales is built using React and Django.
